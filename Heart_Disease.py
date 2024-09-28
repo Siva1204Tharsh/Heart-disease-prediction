@@ -27,10 +27,31 @@ y=df['HeartDisease'] #Output
 
 ## 03.Choosing the Model
 from sklearn.model_selection import train_test_split
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=12) #Splitting the data into training and testing data
 
 #X_train - 80% of the input data
 #X_test - 20% of the input data
 #y_train - 80% of the output data
 #y_test - 20% of the output data
 
+# print("DF" , df.shape) ##Shape show the number of rows and columns
+# print("X" , X_train.shape)
+# print("y" , y_train.shape)
+# print("X_test" , X_test.shape)
+# print("y_test" , y_test.shape)
+
+## 04.Model Training
+from sklearn.naive_bayes import GaussianNB
+model=GaussianNB()
+model.fit(X_train,y_train)
+
+## 05.Model Evaluation
+
+y_pred=model.predict(X_test)
+
+print("y_pred" , y_pred)
+print("y_test" , y_test)
+
+from sklearn.metrics import accuracy_score  # metrics is sub module of sklearn
+accuracy=accuracy_score(y_test,y_pred)
+print("Accuracy of the model is" , accuracy)
